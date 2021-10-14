@@ -1,0 +1,15 @@
+@import url(elem/modal/modal.component.scss);
+div.content{
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+}
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    width : 150px;
+    padding: 0;
+    margin: 0;
+    // box-sizing: border-box;
+    border-radius: 0 !important;
+  }

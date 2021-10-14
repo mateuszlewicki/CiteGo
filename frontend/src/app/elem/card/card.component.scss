@@ -1,0 +1,74 @@
+$colorPrimary:#C74634;
+$colorSecondary:#3A3632;
+$colorText:#fafafa;
+div.selectedCite{
+    div.textbox{
+        background-color: $colorPrimary !important;
+    }
+}
+div.card{
+    margin-top: 20px;
+    display: flex;
+    width: 100%;
+    div.image{
+        background-color: $colorSecondary;
+        // width: 400px ;
+        width: 30% ;
+        height: 175px;
+        position: relative;
+        img.author{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: 175px;
+            width:  175px;
+            object-fit: cover;
+        }
+        p.overlay{
+            display: block;
+            color: $colorText;
+            position: absolute;
+            bottom: 0%;
+            left: 50%;
+            transform: translate(-50%,80%);
+            background: rgba($color: $colorSecondary, $alpha: 0.60);
+            font-size: 22px;
+            width:  177px;
+            text-align: center;
+            // font-weight: bold;
+        }
+    }
+    
+    div.textbox{
+        background-color: $colorText;
+        position: relative;
+        width: 100%;
+        div.citebox{
+            transform: translate(0,-50%);
+            position: absolute;
+            width: 1920px - (1920px * 0.4);
+            top:50%;
+            p.cite{
+                padding-left: 20px;
+                font-size: 24px;
+                font-style: italic;
+                margin:0;
+                // height: 100%;
+                word-wrap: break-word;
+            }
+        }
+        div.bookbox{
+            display: block;
+            position: absolute;
+            right: 2%;
+            bottom: 3px;
+            transform: translate(0,10%);
+            // height: 100%;
+            p.book{
+                font-size: 24px;
+                font-weight: bold;
+                font-style: italic;
+            }
+        }
+    }
+}

@@ -1,0 +1,215 @@
+/* MODAL STYLES
+-------------------------------*/
+$colorPrimary:#C74634;
+$colorSecondary:#3A3632;
+$colorText:#fafafa;
+app-modal {
+    /* modals are hidden by default */
+    display: none;
+
+    .jw-modal {
+        /* modal container fixed across whole screen */
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        /* z-index must be higher than .jw-modal-background */
+        z-index: 1000;
+        
+        /* enables scrolling for tall modals */
+        overflow: auto;
+
+        .jw-modal-body {
+            padding: 20px;
+            background: #fff;
+            max-width: 1920px;
+
+            /* margin exposes part of the modal background */
+            
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+            
+            div.flex{
+
+                justify-content: center;
+                display: flex;
+                flex-direction: row;
+                column-gap: 20px;
+
+                div.left{
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 5px;
+
+                    align-items: center;
+                    div.irec{
+                        width: 210px;
+                        height: 210px;
+                        background-color: #c4c4c4;
+                        img{
+                          width:100%;
+                          height:100%;
+                          object-fit:cover;
+                        }
+                    }
+                    div.filegrp{
+                        display: flex;
+                        flex-direction: row;
+                        width: 100%;
+                        div{
+                            float: left;
+                            height: 36px;
+                        }
+                        .ico { 
+                            width: 20%; 
+                            background-color: $colorPrimary; 
+                            position: relative;
+                            box-shadow: inset 0 0 8 px rgba($color: $colorSecondary, $alpha: 0.50);
+
+                        i{
+                            font-size: 18px;
+                            color: $colorText;
+                            position: absolute;
+                            box-shadow: inset 0 0 4px rgba($color: $colorSecondary, $alpha: 0.25);
+                            transform: translate(-50%,-50%);
+                            left: 50%;
+                            top: 50%;
+                        }
+                        
+                          
+                          &:after {
+                            content: "";
+                            display: block;
+                            padding-bottom: 100%;
+                          }
+                        }
+                        .txt{
+                            text-align: left;
+                            padding-left: 7px;
+                            font-size: 18px;
+                            font-family:inherit;
+                            box-shadow: inset 0 0 4px rgba($color: $colorSecondary, $alpha: 0.25);
+                            /*height: 100%;*/
+                            /*width: 80%;*/
+                            width: 170px;
+                            overflow: hidden;
+                            /*direction: rtl; */
+                            display:flex;
+                            align-items:center;
+                            justify-content:left;
+                        }
+                          &:active{
+                            /*box-shadow: 0 0 4px $colorPrimary;*/ 
+                            border: solid 2px $colorPrimary;
+                            line-height: 0.5em;
+                          }
+                          &:hover{
+                            /*box-shadow: 0 0 4px rgba($color: $colorPrimary, $alpha: 0.5);*/
+                            filter:brightness(1.10);
+                          }
+                    }
+                }
+                div.right{
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 15px;
+                    label{
+                        .input__field{
+                            font-size: 18px;
+                            font-family:inherit;
+                            box-sizing: border-box;
+                            display: block;
+                            width: 100%;
+                            height: 53px;
+                            box-shadow: inset 0 0 4px rgba($color: $colorSecondary, $alpha: 0.25);
+                            border-radius: 0px;
+                            border:none;
+                            margin: 2px;
+                            &:focus{outline:none; border: solid 2px $colorPrimary; margin:0 0 2px 0; }
+                        }
+                        .input__field:first-child{
+                            margin-top:0px
+                        }
+                        .txt__field{
+                            font-size: 18px;
+                            font-family:inherit;
+                            box-sizing: border-box;
+                            display: block;
+                            width: 100%;
+                            box-shadow: inset 0 0 4px rgba($color: $colorSecondary, $alpha: 0.25);
+                            height: 190px;
+                            resize: none;
+                            border-radius: 0px;
+                            border:none;
+                            margin: 2px 2px 0px 2px;
+                            &:focus{outline:none; border: solid 2px $colorPrimary; }
+                            
+                        }
+                    }
+                    div.buttons{
+                        display: flex;
+                        flex-direction: row;
+                        column-gap: 5px;
+                        div:active{
+                          filter: brightness(0.85);
+                          box-shadow: inset 0 0 4px rgba($color: $colorSecondary, $alpha: 0.50);
+                        }
+                        div:hover{
+                          filter: brightness(1.10);
+                        }
+
+                        div.bprim{
+                            width: 100%;
+                            height: auto;
+                            background-color: $colorPrimary;
+                            
+                            text-align: center;
+                            p{
+                                color: $colorText;
+                            }
+                        }
+                        div.bsec{
+                            width: 100%;
+                            height: auto;
+                            text-align: center;
+
+                            background-color: $colorText;
+                            
+                            p{
+                                color: $colorSecondary;
+                            }
+                            }
+                    }
+                }
+            }
+        }
+    }
+
+    .jw-modal-background {
+        /* modal background fixed across whole screen */
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        /* semi-transparent black  */
+        background-color: #000;
+        opacity: 0.40;
+        
+        /* z-index must be below .jw-modal and above everything else  */
+        z-index: 900;
+    }
+}
+
+body.jw-modal-open {
+    /* body overflow is hidden to hide main scrollbar when modal window is open */
+    overflow: hidden;
+}

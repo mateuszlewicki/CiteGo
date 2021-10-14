@@ -1,0 +1,16 @@
+
+<app-topbar [toggle]="citeToggled" (actionEvent)="issueAction($event)"></app-topbar>
+<div  class="content">
+<app-card  *ngFor='let cite of citesArr'
+[author]="cite.authorName"
+[authorImage]="cite.authorImage"
+[cite]="cite.cite"
+[book]="cite.book"
+[id]=cite.ID
+(delEvent)="deleteCite($event)"
+(editEvent)="editCite($event)" 
+(toggleEvent)="toggleSelection($event)"
+></app-card> 
+
+</div>
+<router-outlet></router-outlet>
