@@ -1,0 +1,36 @@
+version: "3"
+services:
+  citegoapi:
+    build: backend
+    container_name: citegoapi
+    restart: unless-stopped
+    environment:
+      - RDBMS_HOST=citedb
+    ports:
+      - 18080:8000
+    networks:
+      - citego
+  citegofront:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+      args:
+        - API_URL=localhost:18080
+    ports:
+      - 9080:80
+    networks:
+      - citego
+  citedb:
+    image: docker.io/postgres:12-bullseye
+    container_name: citedb
+    networks:
+      - citego
+    environment:
+      - POSTGRES_PASSWORD=citego
+      - POSTGRES_USER=citego
+      - POSTGRES_DB=citego
+
+
+networks:
+  citego:
+    name: citego

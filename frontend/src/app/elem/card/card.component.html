@@ -1,15 +1,18 @@
-<div class="card cite-{{id}}" (click)="sendToggleSelection(id)">
-    <div class="image"><img
-        src="{{authorImage}}" 
-        alt="author" 
-        class="author"><p class="overlay">{{author}}</p></div>
-        <div class="textbox">
-    <div class="citebox"><p class="cite">
-        {{cite}}
-    </p></div>
-    <div class="bookbox"><p class="book">{{book}}</p></div>
-    <div class="actions">
-        <input (click)=sendDelReq(id) type="button" value="x">
-        <input (click)=sendEditReq(id) type="button" value="e"></div>
-    </div>
-</div>
+
+<p-card header="{{author|titlecase}}" class="card cite-{{id}}" [style]="{width: '20rem'}" styleClass="p-card-shadow mt-2 {{selected ? 'surface-200' : ''}}" (click)="sendToggleSelection(id)">
+  <ng-template pTemplate="header" >
+    <img alt="Card" class="h-12rem bg-bottom surface-100" src="{{authorImage}}" [ngStyle]= "{'object-fit': 'contain'}" />
+  </ng-template>
+
+
+
+       <p class="font-italic "> {{cite}} </p>
+
+
+
+        <ng-template pTemplate="footer">
+	  <p class="book">{{book}}</p>
+	    </ng-template>
+
+
+</p-card>

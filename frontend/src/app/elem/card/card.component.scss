@@ -1,28 +1,30 @@
 $colorPrimary:#C74634;
 $colorSecondary:#3A3632;
 $colorText:#fafafa;
-div.selectedCite{
-    div.textbox{
+.selectedCite{
+
         background-color: $colorPrimary !important;
-    }
+
 }
-div.card{
-    margin-top: 20px;
-    display: flex;
-    width: 100%;
-    div.image{
+.mycl{
+    background-color: #3a3632;
+
+}
+
+   .image{
         background-color: $colorSecondary;
-        // width: 400px ;
-        width: 30% ;
-        height: 175px;
-        position: relative;
-        img.author{
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            height: 175px;
-            width:  175px;
-            object-fit: cover;
+
+ //           margin-left: 100px;
+   //         margin-right: auto;
+     //   height: 175px;
+       position: relative;
+   }
+   .author{
+           // display: block;
+
+       //     height: 175px;
+     //       width:  175px;
+         //   object-fit: cover;
         }
         p.overlay{
             display: block;
@@ -30,17 +32,17 @@ div.card{
             position: absolute;
             bottom: 0%;
             left: 50%;
-            transform: translate(-50%,80%);
+            transform: translate(-50%,87%);
             background: rgba($color: $colorSecondary, $alpha: 0.60);
             font-size: 22px;
             width:  177px;
             text-align: center;
             // font-weight: bold;
         }
-    }
+   
     
     div.textbox{
-        background-color: $colorText;
+//        background-color: $colorText;
         position: relative;
         width: 100%;
         div.citebox{
@@ -71,4 +73,4 @@ div.card{
             }
         }
     }
-}
+

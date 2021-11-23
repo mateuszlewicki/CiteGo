@@ -2,96 +2,24 @@ $colorPrimary:#C74634;
 $colorSecondary:#3A3632;
 $colorText:#fafafa;
 
-div.fullbar{
-    width: 100vw;
-    background: $colorSecondary;
 
-    div.contentbar{
-        max-width: 1920px;
-        display: flex;
-        height: 90px;
-        // align-items: center;
-        padding-left: 15px;
-        padding-right: 15px;
-        margin-left: auto;
-        margin-right: auto;
-        justify-content: center;
-        gap: 120px;
-        position: relative;
 
-        div.logos{
-            display: flex;
-            gap: 15px;
-            // width: 295px;
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translate(0, -50%);
-            div.appLogo{
+
+:host >>> .centeredMenuBar.p-menubar-root-list {
+    text-align: right !important;
+}
+
+
+//.bg-primary{
+//    background-color: $colorPrimary !important
+//}
+//.bg-secondary{
+//    background-color: $colorSecondary !important
+//}
+div.appLogo{
                 display: block;
                 p{
                     color: $colorPrimary;
-                    font-size: 48px;
+                    font-size: 24px;
                 }
             }
-            div.cLogo{
-                
-                background: url(/assets/images/cLogoWhite.png);
-                background-size: contain;
-                width: 140px;
-                height: 71px;
-                display: inline-block;
-                margin-top: auto;
-                margin-bottom: auto;
-            }
-        }
-        p{
-            color: $colorText;
-            font-size: 36px;
-        }
-        div.buttons {
-            display: inline-flex;
-            gap: 108px;
-            float: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-60%, -50%);
-            
-
-            p{ 
-                display: block;
-                transition-duration: 300ms;
-                &:hover{
-                    border-bottom: 10px solid $colorPrimary;
-                    // text-decoration: underline;
-                    // text-decoration-color: $colorPrimary;
-                    transform: translate(0,0);
-                    transition-duration: 300ms;
-
-                    // border-color: $colorPrimary;
-                }
-            }
-        }
-      /*   div.operations{
-            display: inline-flex;
-            gap: 108px;
-            float: none;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-        }
-        div.shifted{
-        //     transform: translate(-400%,0);
-         }*/
-        div.search{
-            
-            position: absolute;
-            top: 50%;
-            left: 100%;
-            transform: translate(-100%, -50%);
-            // right: 0px;
-            // width: 295px;
-        }
-    }
-}

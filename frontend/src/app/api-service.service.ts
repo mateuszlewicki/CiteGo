@@ -3,13 +3,14 @@ import { HttpClient, HttpHeaders,HttpErrorResponse } from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { Cite } from './model/Cite/cite';
+import { environment } from './../environments/environment'
 import { error } from '@angular/compiler/src/util';
 @Injectable({
   providedIn: 'root'
 })
 export class ApiServiceService {
 
-  private API_URI = "http://localhost:8000";
+  private API_URI = environment.API_URL;
   constructor(private httpClient: HttpClient) { };
 
   private handleError(error: HttpErrorResponse) {
@@ -43,10 +44,19 @@ export class ApiServiceService {
 
 
   }
-  public deletePost(cid: string){
+  public deletePost(cid: number){
     return this.httpClient.delete(this.API_URI+"/cite"+"/"+cid)
     .pipe(
       catchError(this.handleError)
     );
+  }
+    public updatePost(cite: Cite){
+    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+
+    return this.httpClient.put<Cite>(this.API_URI+"/cite/"+cite.ID,JSON.stringify(cite), {headers: headers})
+    .pipe(
+      catchError(this.handleError)
+    );
+
   }
 }

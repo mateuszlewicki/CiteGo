@@ -12,7 +12,8 @@ export class CardComponent implements OnInit {
   @Input()  book: string = "" ;
   @Input()  author: string = "" ;
   @Input()  id: number = 0 ;
-  // constructor() { }
+    @Input() selected: boolean= false;
+    // constructor() { }
   @Output() delEvent = new EventEmitter<string>();
   @Output() editEvent = new EventEmitter<string>();
   @Output() toggleEvent = new EventEmitter<string>();

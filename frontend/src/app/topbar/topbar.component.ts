@@ -1,9 +1,6 @@
 import { ElementRef, EventEmitter, Output } from '@angular/core';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { ModalService } from '../elem/modal';
-import { Cite } from '../model/Cite/cite';
-import { ApiServiceService } from '../api-service.service';
-
+import { MenuItem } from 'primeng/api';
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
@@ -11,67 +8,95 @@ import { ApiServiceService } from '../api-service.service';
 })
 export class TopbarComponent implements OnInit {
 
-  @ViewChild('fileInput')
-  fileInput!: ElementRef;
+    constructor(
+    ) {}
+    
+    items: MenuItem[] = [];
 
-  icoview!:string;
-  defalut:string = "nazwa pliku";
-  fname:string = this.defalut;
-  cite: Cite = new Cite();
-  citeSelected: Boolean = false;
-
-  // @Input() cid: string;
-  @Output() actionEvent = new EventEmitter<string>();
-  @Input() toggle: boolean;
-
-  constructor(private modalService: ModalService, private api: ApiServiceService) {
-	  //this.cite = new Cite();
-	//this.cite.authorImage=" ";
-   }
-
-  ngOnInit(): void {
-  }
-
-  sendModal(id: string){
-    console.log("Sending");
-    // this.cite.authorImage="";
-  	this.api.addPost(this.cite).subscribe((r) => console.log(r));
-    console.log("Sent");
-	    this.closeModal(id);
-  }
-  openModal(id: string) {
-	this.modalService.open(id);
-  }
-
-  closeModal(id: string) {
-	this.modalService.close(id);
-  	this.icoview="";
-	this.fname=this.defalut;
-	// console.log(JSON.stringify(this.cite));
-  }
-  oFilExp(): void{
-      // console.log("here");
-      typeof(this.fileInput)
-      this.fileInput.nativeElement.click();
-  }
-  img2base64(fileInput: any): void{
-	if (fileInput.target.files && fileInput.target.files[0]) {
-		const reader = new FileReader();
-		reader.onload = this.rload.bind(this);
-
-  		reader.readAsDataURL(fileInput.target.files[0]);
-		//console.log(this.icoview);
-		this.fname=fileInput.target.files[0].name;
-
-	}
-  }
-	rload(fileLoadedEvent:any) {
-		var imgSrcData = fileLoadedEvent.target.result; // <--- data: base64 
-  		this.cite.authorImage=imgSrcData;
-
-		//icoview=imgSrcData;
+    @Output() actionEvent = new EventEmitter<string>();
+    @Input()
+    set toggle(val: boolean){
+	if (val){
+	    this.items = [
+		{
+		    label: "Dodaj",
+		    icon: "pi pi-plus",
+		    command: () => {this.sendActionEvent("add");}
+		},
+		{
+		    label: "Kopiuj",
+		    icon: "pi pi-copy",
+    		    command: () => {this.sendActionEvent("copy");}
+		},
+		{
+		    label: "Edytuj",
+		    icon: "pi pi-pencil",
+		    command: () => {this.sendActionEvent("edit");}
+		},
+		{
+		    label:"Usuń",
+		    icon: "pi pi-trash",
+		    command: () => {this.sendActionEvent("delete");}
 		}
+	    ];
+	}
+	else{
+	    this.items = [
+		{
+		    label: "Dodaj",
+		    icon: "pi pi-plus",
+		    command: () => {this.sendActionEvent("add");}
+
+		},
+		{
+		    label: "Kopiuj",
+		    icon: "pi pi-copy",
+		    disabled: true
+		},
+		{
+		    label: "Edytuj",
+		    icon: "pi pi-pencil",
+		    disabled: true
+		},
+		{
+		    label:"Usuń",
+		    icon: "pi pi-trash",
+		    disabled: true
+		}
+	    ];
+	}
+    };
+
+
+    
+    ngOnInit(): void {
+	this.items = [
+	    {
+		label: "Dodaj",
+		icon: "pi pi-plus",
+		command: () => {this.sendActionEvent("add");}
+	    },
+	    {
+		label: "Kopiuj",
+		icon: "pi pi-copy",
+		disabled: true
+	    },
+	    {
+		label: "Edytuj",
+		icon: "pi pi-pencil",
+		disabled: true
+	    },
+	    {
+		label:"Usuń",
+		icon: "pi pi-trash",
+		disabled: true
+	    }
+	];
+    }
+    
+
+
     sendActionEvent(action:string){
-      this.actionEvent.emit(action);
+	this.actionEvent.emit(action);
     }
 }

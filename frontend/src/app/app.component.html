@@ -1,16 +1,73 @@
-
 <app-topbar [toggle]="citeToggled" (actionEvent)="issueAction($event)"></app-topbar>
-<div  class="content">
-<app-card  *ngFor='let cite of citesArr'
-[author]="cite.authorName"
-[authorImage]="cite.authorImage"
-[cite]="cite.cite"
-[book]="cite.book"
-[id]=cite.ID
-(delEvent)="deleteCite($event)"
-(editEvent)="editCite($event)" 
-(toggleEvent)="toggleSelection($event)"
-></app-card> 
-
+ <div  class="content mt-4"> 
+<!-- <div  class="card"> -->
+  <p-dataView #dv [value]="citesArr" [rows]=5 >
+    <ng-template let-cite pTemplate="listItem">
+      <div class="p-3 col-12 cite-{{cite.ID}} shadow-4 card" (click)="toggleSelection(cite.ID)">
+	<div class="cite-list-item">
+	  <img [src]="cite.authorImage" class="shadow-4 border-round" [alt]="cite.authorName"/>
+	  <div class="citeLeft">
+	    <div class="citeCite font-italic">{{cite.cite}}</div>
+	    <div class="citeAuthor">{{cite.authorName}}</div>
+	  </div>
+	  <div class="citeRight">
+	    <div class="citeBook">{{cite.book}}</div>
+	  </div>
+	</div>
+      </div>
+    </ng-template>
+  </p-dataView>
 </div>
+
+<p-dialog [(visible)]="display" [modal]="true" [maximizable]="true">
+  <div class="">
+    <div class="formgrid grid">
+      <div class="field col flex justify-content-center flex-column">
+	<div class="field">
+	  <div class="irec">
+	    <img class="citeFace" [src]="cite.authorImage"/>
+	  </div>
+	</div>
+	<div class="field">
+	  <button pButton pRipple type="button" class="p-button-info w-full" label="Dodaj zdjęcie" icon="pi pi-upload" (click)="oFilExp();"></button>
+	</div>
+	<div class="field">
+          <div class="txt">
+
+
+	      <input class="inputfield w-full" type="text" pInputText value={{fname}} [disabled]=true/>
+
+	  </div>
+        </div>
+        
+        <input type="file" #fileInput (change)="img2base64($event)" id="auImg" style="display: none;">
+      </div>
+      <div class="field col">
+	<div class="field">
+	    <label for="tbtxia">Autor</label>	
+	    <input id="tbtxia" [(ngModel)]="cite.authorName" class="input__field inputfield w-full" name="author" type="text" pInputText/>
+
+	
+	</div>
+	<div class="field">
+	    <label for="tbtxib">Książka</label>	
+	    <input id="tbtxib" [(ngModel)]="cite.book" class="input__field inputfield w-full" name="book" type="text" pInputText/>
+
+	
+        </div>
+	<div class="field">
+	    <label for="tbtxa">Cytaty</label>	
+	    <textarea rows="5" cols="30" pInputTextarea  id="tbtxa" [(ngModel)]="cite.cite" class="txt__field inputfield w-full" name="cite"></textarea>
+
+	
+	</div>
+
+      </div>
+    </div>
+
+      <p-button label="Zatwierdź" icon="pi pi-check" (click)="sendModal(sAction);"></p-button>
+      <button pButton pRipple type="button" label="Anuluj" class="p-button-secondary p-button-text" (click)="closeModal();" ></button>
+  </div>
+</p-dialog>
+
 <router-outlet></router-outlet>

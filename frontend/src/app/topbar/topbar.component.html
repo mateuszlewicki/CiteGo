@@ -1,70 +1,13 @@
 <div class="fullbar">
-    <div class="contentbar">
-        <div class="logos">
-            <div class="cLogo"></div>
-            <div class="appLogo">
-                <p>CiteGo</p>
-            </div>
-        </div>
-        <div class="buttons">
-            <div [class.shifted]="toggle" class="add">
-                <p (click)="openModal('addModal')">Dodaj</p>  
-            </div>
-           
-                <div *ngIf="toggle" class="copy" (click)="sendActionEvent('copy')">
-                    <p>Kopiuj</p>
-                </div>
-                <div  *ngIf="toggle" class="edit">
-                    <p>Edytuj</p>
-                </div>
-                <div *ngIf="toggle" class="delete">
-                    <p>Usuń</p>
-                </div>
-           
-        </div>
-        <div class="search">
-            <div class="icon"></div>
-            <div class="search">
-                <p>Szukaj</p>   
-            </div>
-        </div>
-        <div class="searchbar" style="display: none;"></div>
-    </div>
-</div>
-<app-modal id="addModal">
-    <!-- <h1>Add Cite</h1> -->
-    <div class="flex">
-        <div class="left">
-		<div class="irec"><img [src]="cite.authorImage"></div>
-            <div class="filegrp" (click)="oFilExp();">
-                <div class="ico" ><i class="fas fa-file-upload"></i>    </div>
-                <div class="txt"><span>{{fname}}</span></div>
-            </div>
-            <input type="file" #fileInput (change)="img2base64($event)" id="auImg" style="display: none;">
-        </div>
-        <div class="right">
-            <label class="author">
-            <input [(ngModel)]="cite.authorName" class="input__field" name="author" placeholder="Autor" type="text" valu/>
-            </label>
-            <!-- <p>Author Image: </p>  -->
-            <!-- <p>Book: </p> -->
-            <label class="book">
+  <p-menubar [model]="items"  styleClass="align-items-stretch"  >
+    <ng-template pTemplate="start" >
 
-            <input [(ngModel)]="cite.book" class="input__field" name="book" placeholder="Książka" type="text" />
-        </label>
 
-            <!-- <p>Cite: </p>  -->
-            <label class="cite">
+        <img src="assets/images/aLogoW.png" height="40" class="p-mr-4 mr-3">
 
-            <textarea [(ngModel)]="cite.cite" class="txt__field" name="cite" placeholder="Cytat"></textarea>
-        </label>
 
-            
-            <!-- <br /> -->
-            <div class="buttons">
-                <div class="bprim" (click)="sendModal('addModal');"><p>Apply</p></div>
-                <div class="bsec" (click)="closeModal('addModal');"><p>Discard</p></div>
-            </div>
-        </div>
-    </div>
-</app-modal>
+    </ng-template>
+  </p-menubar>
+
+
+

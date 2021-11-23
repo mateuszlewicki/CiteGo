@@ -1,4 +1,21 @@
-@import url(elem/modal/modal.component.scss);
+$colorPrimary:#C74634;
+$colorSecondary:#3A3632;
+$colorText:#fafafa;
+//.bg-secondary{
+//    background-color: $colorSecondary !important
+//}
+
+.selectedCite{
+            background-color: $colorSecondary;
+        /*background-color: var(--gray-900);*/
+/*        background-color: $colorPrimary !important; */
+
+}
+.mycl{
+    background-color: #3a3632;
+}
+
+
 div.content{
     max-width: 1920px;
     margin-left: auto;
@@ -13,3 +30,107 @@ button, input, select, textarea {
     // box-sizing: border-box;
     border-radius: 0 !important;
   }
+
+
+:host ::ng-deep {
+
+    .citeCite {
+	font-size: 1.5rem;
+	font-weight: 700;
+    }
+
+    .citeAuthor {
+	margin: 0 0 1rem 0;
+    }
+
+
+
+    .cite-list-item {
+	display: flex;
+	align-items: center;
+	padding: 1rem;
+	width: 100%;
+
+	img {
+	    $h: 150px;
+	    $stbn:0.5625;
+	    $fbt:0.75;
+	    height: $h;
+	     width: $h * $fbt ; 
+	    /*width: 150px;*/
+	    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+	    margin-right: 2rem;
+	    
+	    object-fit: cover;
+	}
+
+	.citeLeft {
+	    flex: 1 1 0;
+	}
+
+	.citeRight {
+	    display: flex;
+	    flex-direction: column;
+	}
+
+	.citeBook {
+	    margin-bottom: .5rem;
+	}
+    }
+
+}
+
+.card {
+    padding: 2rem;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 576px) {
+    :host ::ng-deep .cite-list-item {
+	flex-direction: column;
+	align-items: center;
+
+	img {
+	    width: 75%;
+	    margin: 2rem 0;
+	}
+
+	.citeLeft {
+	    text-align: center;
+	}
+
+	.product-price {
+	    align-self: center;
+	}
+
+	.citeRight {
+	    display: flex;
+	    flex-direction: column;
+	}
+
+	.citeRight {
+	    margin-top: 2rem;
+	    flex-direction: row;
+	    justify-content: space-between;
+	    align-items: center;
+	    width: 100%;
+	}
+    }
+}
+
+
+div.irec{
+    width: 210px;
+    height: 210px;
+    background-color: #c4c4c4;
+    
+    
+}
+
+.citeFace{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+}
