@@ -1,4 +1,4 @@
-pipeline {
+
 
     def prepareOS = {
 	echo "INSTALL wget,curl,tar"
@@ -37,13 +37,16 @@ pipeline {
 	installFrontTools()
 	installBackTools()
     }
-    agent any
 
+node('slave') {
     stages{
 	stage("Install tools"){
 	    steps{ installTools() }
 	}
 	stage("Build Frontend"){
+	    environment {
+		API_URL= "localhost:8000"
+	    }
 	    steps{
 		dir("frontend") {
 		    exec("npm update")
