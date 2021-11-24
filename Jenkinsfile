@@ -47,35 +47,36 @@ def installTools() {
 
 node {
 	stage("Install tools"){
-	    steps{ installTools() }
+
+	    installTools() 
 	}
 	stage("Build Frontend"){
 	    environment {
 		API_URL= "localhost:8000"
 	    }
-	    steps{
+
 		dir("frontend") {
 		    exec("npm update")
 		    exec("npm run build")
 		}
-	    }
+
 	}
 	stage("Build Backend"){
-	    steps {
+
 		dir("backend"){
 		    exec("go build -o citego")
 		}
-	    }
+
 	}
 	stage("Pack&Publish archive"){
-	    steps {
+
 		dir("frontend"){
 		    archiveArtifacts "dist/frontend"
 		}
 		dir("backend"){
 		    archiveArtifacts "citego"
 		}
-	    }
+
 	}
     
 
