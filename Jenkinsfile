@@ -31,7 +31,7 @@ def installGolang(ver) {
     echo "INSTAL GOLANG " + ver
     exec("wget https://golang.org/dl/go${ver}.linux-amd64.tar.gz")
     exec("tar -zxvf go1.17.linux-amd64.tar.gz -C /usr/local/")
-    exec("echo \"export PATH=/usr/local/go/bin:\$\{PATH\}\" > /etc/profile.d/go.sh")
+    exec("echo \"export PATH=/usr/local/go/bin:\${PATH}\" > /etc/profile.d/go.sh")
     exec("source /etc/profile.d/go.sh")
 }
 
