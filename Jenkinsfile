@@ -45,7 +45,7 @@ def installTools() {
     installBackTools()
 }
 
-node('slave') {
+agent {
     stages{
 	stage("Install tools"){
 	    steps{ installTools() }
