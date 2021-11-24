@@ -30,7 +30,7 @@ def installFrontTools() {
 def installGolang(ver) {
     echo "INSTAL GOLANG " + ver
     sh "wget https://golang.org/dl/go${ver}.linux-amd64.tar.gz"
-    sh "tar -zxvf go1.17.linux-amd64.tar.gz -C /usr/local/"
+    sh "tar -zxvf go${ver}.linux-amd64.tar.gz -C /usr/local/"
     sh "echo \"export PATH=/usr/local/go/bin:\${PATH}\" > /etc/profile.d/go.sh"
     sh "source /etc/profile.d/go.sh"
 }
