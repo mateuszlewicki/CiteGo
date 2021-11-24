@@ -68,7 +68,8 @@ node {
     }
     stage("Pack&Publish archive"){
 	dir("frontend"){
-	    archiveArtifacts "dist/frontend"
+	    sh "tar -cvf frontend.tgz dist/frontend"
+	    archiveArtifacts "frontend.tgz"
 	}
 	dir("backend"){
 	    archiveArtifacts "citego"
