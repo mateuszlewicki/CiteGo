@@ -56,22 +56,21 @@ node {
 	environment {
 	    API_URL= "localhost:8000"
 	}
-	sh "ls -la"
-	dir("CiteGo/frontend") {
+	dir("frontend") {
 	    sh "npm update"
 	    sh "npm run build"
 	}
     }
-    stage("CiteGo/Build Backend"){
+    stage("Build Backend"){
 	dir("backend"){
 	    sh "go build -o citego"
 	}
     }
     stage("Pack&Publish archive"){
-	dir("CiteGo/frontend"){
+	dir("frontend"){
 	    archiveArtifacts "dist/frontend"
 	}
-	dir("CiteGo/backend"){
+	dir("backend"){
 	    archiveArtifacts "citego"
 	}
     }
