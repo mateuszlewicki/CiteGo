@@ -2,23 +2,23 @@
 
 def prepareOS() {
     echo "INSTALL wget,curl,tar"
-    exec("apt-get install -y wget curl tar")
+    sh "apt-get install -y wget curl tar"
 }
 
 def installNodejs(mVer) {
     echo "ADD NODE " + mVer + " REPO"
-    exec("curl -fsSL https://deb.nodesource.com/setup_${mVer}.x | bash -")
+    sh "curl -fsSL https://deb.nodesource.com/setup_${mVer}.x | bash -"
     echo "INSTALL NODE " + mVer 
-    exec("apt-get install -y nodejs")
+    sh "apt-get install -y nodejs"
 }
 
 def installAngularCLI() {
-    exec("npm install -g @angular/cli@latest")
+    sh "npm install -g @angular/cli@latest"
 }
 
 def installTsNode() {
-    exec("npm install -g typescript")
-    exec("npm install -g ts-node")
+    sh "npm install -g typescript"
+    sh "npm install -g ts-node"
 }
 
 def installFrontTools() {
@@ -29,10 +29,10 @@ def installFrontTools() {
 
 def installGolang(ver) {
     echo "INSTAL GOLANG " + ver
-    exec("wget https://golang.org/dl/go${ver}.linux-amd64.tar.gz")
-    exec("tar -zxvf go1.17.linux-amd64.tar.gz -C /usr/local/")
-    exec("echo \"export PATH=/usr/local/go/bin:\${PATH}\" > /etc/profile.d/go.sh")
-    exec("source /etc/profile.d/go.sh")
+    sh "wget https://golang.org/dl/go${ver}.linux-amd64.tar.gz"
+    sh "tar -zxvf go1.17.linux-amd64.tar.gz -C /usr/local/"
+    sh "echo \"export PATH=/usr/local/go/bin:\${PATH}\" > /etc/profile.d/go.sh"
+    sh "source /etc/profile.d/go.sh"
 }
 
 def installBackTools() {
@@ -46,39 +46,29 @@ def installTools() {
 }
 
 node {
-	stage("Install tools"){
-
-	    installTools() 
+    stage("Install tools"){
+	installTools() 
+    }
+    stage("Build Frontend"){
+	environment {
+	    API_URL= "localhost:8000"
 	}
-	stage("Build Frontend"){
-	    environment {
-		API_URL= "localhost:8000"
-	    }
-
-		dir("frontend") {
-		    exec("npm update")
-		    exec("npm run build")
-		}
-
+	dir("frontend") {
+	    sh "npm update"
+	    sh "npm run build"
 	}
-	stage("Build Backend"){
-
-		dir("backend"){
-		    exec("go build -o citego")
-		}
-
+    }
+    stage("Build Backend"){
+	dir("backend"){
+	    sh "go build -o citego"
 	}
-	stage("Pack&Publish archive"){
-
-		dir("frontend"){
-		    archiveArtifacts "dist/frontend"
-		}
-		dir("backend"){
-		    archiveArtifacts "citego"
-		}
-
+    }
+    stage("Pack&Publish archive"){
+	dir("frontend"){
+	    archiveArtifacts "dist/frontend"
 	}
-    
-
-
+	dir("backend"){
+	    archiveArtifacts "citego"
+	}
+    }
 }
