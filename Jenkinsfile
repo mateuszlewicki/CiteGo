@@ -49,27 +49,29 @@ node {
     stage("Install tools"){
 	installTools() 
     }
+    stage("checkout"){
+	checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/mateuszlewicki/CiteGo']]])
+    }
     stage("Build Frontend"){
 	environment {
 	    API_URL= "localhost:8000"
 	}
 	sh "ls -la"
-	dir("frontend") {
-	    sh "ls -la"
+	dir("CiteGo/frontend") {
 	    sh "npm update"
 	    sh "npm run build"
 	}
     }
-    stage("Build Backend"){
+    stage("CiteGo/Build Backend"){
 	dir("backend"){
 	    sh "go build -o citego"
 	}
     }
     stage("Pack&Publish archive"){
-	dir("frontend"){
+	dir("CiteGo/frontend"){
 	    archiveArtifacts "dist/frontend"
 	}
-	dir("backend"){
+	dir("CiteGo/backend"){
 	    archiveArtifacts "citego"
 	}
     }
