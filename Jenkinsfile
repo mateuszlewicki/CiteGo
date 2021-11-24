@@ -46,7 +46,6 @@ def installTools() {
 }
 
 node {
-    stages{
 	stage("Install tools"){
 	    steps{ installTools() }
 	}
@@ -79,6 +78,6 @@ node {
 	    }
 	}
     
-    }
+
 
 }
