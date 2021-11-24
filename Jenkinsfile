@@ -53,7 +53,9 @@ node {
 	environment {
 	    API_URL= "localhost:8000"
 	}
+	sh "ls -la"
 	dir("frontend") {
+	    sh "ls -la"
 	    sh "npm update"
 	    sh "npm run build"
 	}
