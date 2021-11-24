@@ -30,9 +30,10 @@ def installFrontTools() {
 def installGolang(ver) {
     echo "INSTAL GOLANG " + ver
     sh "wget https://golang.org/dl/go${ver}.linux-amd64.tar.gz"
-    sh "tar -zxf go${ver}.linux-amd64.tar.gz -C /usr/local/"
-    sh "echo \"export PATH=/usr/local/go/bin:\${PATH}\" > /etc/profile.d/go.sh"
-    sh ". /etc/profile.d/go.sh"
+    sh "tar -zxf go${ver}.linux-amd64.tar.gz -C"
+    sh "mv go/bin/* /bin/"
+    sh "rm -rf ./go/"
+    sh "rm -f go${ver}.linux-amd64.tar.gz"
 }
 
 def installBackTools() {
