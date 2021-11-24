@@ -2,14 +2,14 @@
 
 def prepareOS() {
     echo "INSTALL wget,curl,tar"
-    sh "sudo apt-get install -y wget curl tar"
+    sh "apt-get install -y wget curl tar"
 }
 
 def installNodejs(mVer) {
     echo "ADD NODE " + mVer + " REPO"
-    sh "curl -fsSL https://deb.nodesource.com/setup_${mVer}.x | sudo bash -"
+    sh "curl -fsSL https://deb.nodesource.com/setup_${mVer}.x | bash -"
     echo "INSTALL NODE " + mVer 
-    sh "sudo apt-get install -y nodejs"
+    sh "apt-get install -y nodejs"
 }
 
 def installAngularCLI() {
@@ -30,8 +30,8 @@ def installFrontTools() {
 def installGolang(ver) {
     echo "INSTAL GOLANG " + ver
     sh "wget https://golang.org/dl/go${ver}.linux-amd64.tar.gz"
-    sh "sudo tar -zxvf go1.17.linux-amd64.tar.gz -C /usr/local/"
-    sh "echo \"export PATH=/usr/local/go/bin:\${PATH}\" | sudo tee /etc/profile.d/go.sh"
+    sh "tar -zxvf go1.17.linux-amd64.tar.gz -C /usr/local/"
+    sh "echo \"export PATH=/usr/local/go/bin:\${PATH}\" > /etc/profile.d/go.sh"
     sh "source /etc/profile.d/go.sh"
 }
 
